@@ -20,8 +20,6 @@ shopt -s dotglob
 
 cd $BUILD_DIR
 
-# create directories
-mkdir -p local
 
 # move app things to www
 mkdir -p $CACHE_DIR/www
@@ -65,6 +63,9 @@ echo "-----> Bundling PHP version $PHP_VERSION"
 curl --silent --max-time 60 --location "$PHP_URL" | tar xz
 
 # libicu
+# create directories
+mkdir -p local
+ls
 echo "-----> Installing libicu"
 S3_BUCKET=existencebkct
 #
