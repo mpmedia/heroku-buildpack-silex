@@ -20,6 +20,9 @@ shopt -s dotglob
 
 cd $BUILD_DIR
 
+# create directories
+mkdir -p ${BUILD_DIR}/local
+
 # move app things to www
 mkdir -p $CACHE_DIR/www
 mv * $CACHE_DIR/www
