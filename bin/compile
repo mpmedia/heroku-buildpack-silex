@@ -21,7 +21,7 @@ shopt -s dotglob
 cd $BUILD_DIR
 
 # create directories
-mkdir -p $BUILD_DIR/local
+mkdir -p local
 
 # move app things to www
 mkdir -p $CACHE_DIR/www
@@ -88,7 +88,7 @@ else
 	download_url ${ICU_URL}
 fi
 
-tar xzf ${ICU_FILE} -C $BUILD_DIR/local
+tar xzf ${ICU_FILE} -C local
 
 #end install libicu
 
