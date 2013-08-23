@@ -38,6 +38,34 @@ PHP_URL="http://dl.dropbox.com/u/62064441/php.tar.gz"
 echo "-----> Bundling PHP version $PHP_VERSION"
 curl --silent --max-time 60 --location "$PHP_URL" | tar xz
 
+# libicu
+echo "-----> Installing libicu"
+S3_BUCKET=existencebkct
+#
+S3_URL="https://s3.amazonaws.com/${S3_BUCKET}"
+LIBICU_VERSION=50.1.2
+ICU_FILE="libicu-${LIBICU_VERSION}.tar.gz"
+ICU_URL="${S3_URL}/${ICU_FILE}"
+if [ -f "${ICU_FILE}" ]
+then
+	if check_md5 "${ICU_FILE}"
+	then
+		echo "Bundling libicu v${LIBICU_VERSION}" | indent
+		echo ${ICU_URL} | indent
+		download_url ${ICU_URL}
+	else
+		echo "Using cached libicu v${LIBICU_VERSION}" | indent
+	fi
+else
+	echo "Bundling libicu v${LIBICU_VERSION}" | indent
+	echo ${ICU_URL} | indent
+	download_url ${ICU_URL}
+fi
+
+tar xzf ${ICU_FILE} -C ${BUILD_DIR}/local
+
+#end install libicu
+
 # update config files
 cp $LP_DIR/conf/httpd.conf $APACHE_PATH/conf
 cp $LP_DIR/conf/php.ini php
