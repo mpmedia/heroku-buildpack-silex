@@ -65,7 +65,7 @@ curl --silent --max-time 60 --location "$PHP_URL" | tar xz
 # libicu
 # create directories
 mkdir -p local
-ls
+
 echo "-----> Installing libicu"
 S3_BUCKET=existencebkct
 #
